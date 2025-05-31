@@ -2,28 +2,36 @@
 <html>
 <head>
     <title>結果 - 人生100年カウントダウン</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-      body {
-        background-color: #fffaf7;
-      }
       #countdown {
-        color: #00A474;
+        font-size: 2rem;
+        color: #1f4e66;
         font-weight: bold;
+      }
+      body {
+        background-color: #ffe8f2;
+      }
+      .countdown-box {
+        background-color: #fdede4;
+      }
+      h2#prompt {
+        color: #ebc775;
       }
     </style>
 </head>
 <body class="text-center py-5">
     <div class="container">
         <h1 class="mb-4">人生100年カウントダウン</h1>
-        <div class="p-4 shadow rounded" style="max-width: 600px; margin: auto; background-color: #fdede4;">
+        <div class="p-4 countdown-box shadow rounded" style="max-width: 600px; margin: auto;">
             <p><strong>あなたの誕生日：</strong>{{ birth_date }}</p>
             <p><strong>今日の日付：</strong>{{ today }}</p>
             <p><strong>生きた日数：</strong>{{ age_in_days }}日</p>
             <p><strong>100歳まであと：</strong></p>
             <h3 id="countdown" class="mb-3"></h3>
 
-            <h2 class="mt-4" style="color: #ebc775;">今日はどう生きる？</h2>
+            <h2 id="prompt" class="mt-4">Be Youeself</h2>
             <a href="/" class="btn btn-outline-secondary mt-3">戻る</a>
         </div>
     </div>

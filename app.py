@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from datetime import datetime
+from datetime import datetime, date
 
 app = Flask(__name__)
 
@@ -10,24 +10,24 @@ def index():
 @app.route('/result', methods=['POST'])
 def result():
     birth_date_str = request.form['birth_date']
-    birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d')
+    birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d').date()
 
-    today = datetime.now()
+    today = date.today()
 
-    hundred_years_later = birth_date.replace(year=birth_date.year + 100)
-    remaining_time = hundred_years_later - today
-
+    # 生きた日数
     age_in_days = (today - birth_date).days
-    remaining_days = remaining_time.days
-    remaining_hours = int(remaining_time.total_seconds() // 3600)
-    remaining_seconds = int(remaining_time.total_seconds())
+
+    # 100歳までの日数
+    hundred_years = birth_date.replace(year=birth_date.year + 100)
+    remaining_days = (hundred_years - today).days
+
+    # 100歳までの残り秒数（残り日数×86400秒）
+    remaining_seconds = remaining_days * 86400
 
     return render_template('result.html',
                            birth_date=birth_date_str,
                            today=today.strftime('%Y-%m-%d'),
                            age_in_days=age_in_days,
-                           remaining_days=remaining_days,
-                           remaining_hours=remaining_hours,
                            remaining_seconds=remaining_seconds)
 
 if __name__ == '__main__':
