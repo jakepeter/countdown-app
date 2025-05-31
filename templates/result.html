@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>結果 - 人生100年カウントダウン</title>
+    <title>結果 - 人生{{ target_age }}年カウントダウン</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -23,25 +23,26 @@
 </head>
 <body class="text-center py-5">
     <div class="container">
-        <h1 class="mb-4">人生100年カウントダウン</h1>
+        <h1 class="mb-4">人生{{ target_age }}年カウントダウン</h1>
         <div class="p-4 countdown-box shadow rounded" style="max-width: 600px; margin: auto;">
             <p><strong>あなたの誕生日：</strong>{{ birth_date }}</p>
             <p><strong>今日の日付：</strong>{{ today }}</p>
             <p><strong>生きた日数：</strong>{{ age_in_days }}日</p>
-            <p><strong>100歳まであと：</strong></p>
+            <p><strong>{{ target_age }}歳まであと：</strong></p>
             <h3 id="countdown" class="mb-3"></h3>
 
-            <h2 id="prompt" class="mt-4">Be Youeself</h2>
+            <h2 id="prompt" class="mt-4">"Carpe Diem. Seize the day, boys. <br>Make your lives extraordinary."</h2>
             <a href="/" class="btn btn-outline-secondary mt-3">戻る</a>
         </div>
     </div>
 
     <script>
         let remainingSeconds = {{ remaining_seconds }};
+        let targetAge = {{ target_age }};
 
         function updateCountdown() {
             if (remainingSeconds <= 0) {
-                document.getElementById('countdown').textContent = "おめでとうございます！100歳達成です🎉";
+                document.getElementById('countdown').textContent = `おめでとうございます！${targetAge}歳達成です🎉`;
                 clearInterval(timer);
                 return;
             }
