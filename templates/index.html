@@ -11,7 +11,10 @@
         <form action="/result" method="post" class="p-4 bg-white shadow rounded" style="max-width: 500px; margin: auto;">
             <div class="mb-3">
                 <label for="birth_date" class="form-label">誕生日を入力してください</label>
-                <input type="date" id="birth_date" name="birth_date" class="form-control" required>
+                <!-- type="text" にして pattern でフォーマット指定、placeholder も追加 -->
+                <input type="text" id="birth_date" name="birth_date" class="form-control" 
+                       placeholder="例: 1980-01-01" pattern="\d{4}-\d{2}-\d{2}" required inputmode="numeric">
+                <div class="form-text">YYYY-MM-DD の形式で入力してください</div>
             </div>
             <button type="submit" class="btn btn-primary">スタート</button>
         </form>
